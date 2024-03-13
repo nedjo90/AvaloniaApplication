@@ -1,8 +1,18 @@
-﻿namespace AvaloniaApplication.ViewModels;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+namespace AvaloniaApplication.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
-#pragma warning disable CA1822 // Mark members as static
-    public string Greeting => "Welcome to Avalonia!";
-#pragma warning restore CA1822 // Mark members as static
+    public Calculate MyCalc { get; set; }
+    public IncrementDecrement MyIncDec { get; set; }
+
+    public MainWindowViewModel()
+    {
+        MyCalc = new Calculate();
+        MyIncDec = new IncrementDecrement();
+    }
 }

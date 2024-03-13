@@ -1,20 +1,114 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:AvaloniaApplication.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="AvaloniaApplication.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="AvaloniaApplication">
+<Window
+    Height="500"
+    Icon="/Assets/avalonia-logo.ico"
+    Title="AvaloniaApplication"
+    Width="400"
+    d:DesignHeight="500"
+    d:DesignWidth="400"
+    mc:Ignorable="d"
+    x:Class="AvaloniaApplication.Views.MainWindow"
+    x:DataType="vm:MainWindowViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:AvaloniaApplication.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+        <!--
+            This only sets the DataContext for the previewer in an IDE,
+            to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs)
+        -->
+        <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+    <StackPanel>
+        <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
+            <TextBox
+                Grid.Column="0"
+                Grid.Row="0"
+                Height="50"
+                HorizontalAlignment="Left"
+                HorizontalContentAlignment="Center"
+                Margin="10"
+                Text="{Binding MyCalc.First, Mode=TwoWay}"
+                VerticalContentAlignment="Center"
+                Width="150" />
+            <TextBox
+                Grid.Column="1"
+                Grid.Row="0"
+                Height="50"
+                HorizontalAlignment="Right"
+                HorizontalContentAlignment="Center"
+                Margin="5"
+                Text="{Binding MyCalc.Second, Mode=TwoWay}"
+                VerticalContentAlignment="Center"
+                Width="150" />
+            <NumericUpDown
+                Grid.Column="0"
+                Grid.Row="1"
+                Margin="5"
+                Value="{Binding MyCalc.Min, Mode=TwoWay}" />
+            <NumericUpDown
+                Grid.Column="1"
+                Grid.Row="1"
+                Margin="5"
+                Value="{Binding MyCalc.Max, Mode=TwoWay}" />
+        </Grid>
+        <Button
+            Command="{Binding MyCalc.NewRandom}"
+            HorizontalAlignment="Center"
+            Margin="0,50,0,50">
+            Random
+        </Button>
+        <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*">
+            <Button
+                Command="{Binding MyCalc.OnSum}"
+                Grid.Column="0"
+                Grid.Row="0"
+                HorizontalAlignment="Center">
+                +
+            </Button>
+            <Button
+                Command="{Binding MyCalc.OnDifference}"
+                Grid.Column="1"
+                Grid.Row="0"
+                HorizontalAlignment="Center">
+                -
+            </Button>
+            <Button
+                Command="{Binding MyCalc.OnMultiply}"
+                Grid.Column="2"
+                Grid.Row="0"
+                HorizontalAlignment="Center">
+                *
+            </Button>
+            <Button
+                Command="{Binding MyCalc.OnDivide}"
+                Grid.Column="3"
+                Grid.Row="0"
+                HorizontalAlignment="Center">
+                /
+            </Button>
+        </Grid>
+        <TextBox
+            HorizontalAlignment="Center"
+            Margin="0,100,0,10"
+            Text="{Binding MyCalc.ResultString}" />
+        <TextBox Margin="0,0,0,10" Text="{Binding MyIncDec.CurrentValueString}" />
+        <Grid ColumnDefinitions="*,*">
+            <Button
+                Command="{Binding MyIncDec.Increment}"
+                Grid.Column="0"
+                HorizontalAlignment="Center">
+                +
+            </Button>
+            <Button
+                Command="{Binding MyIncDec.Decrement}"
+                Grid.Column="1"
+                HorizontalAlignment="Center">
+                -
+            </Button>
+        </Grid>
+    </StackPanel>
 </Window>
